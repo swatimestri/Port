@@ -15,95 +15,109 @@ export function ProjectModal({ project, onClose }) {
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 px-4 py-8 backdrop-blur-sm" onClick={onClose}>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#050816]/85 px-4 py-8 backdrop-blur-md animate-fade-in"
+      onClick={onClose}
+    >
       <div
-        className="max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-3xl border border-slate-700 bg-slate-900 shadow-glow"
+        className="max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-2xl sm:rounded-3xl border border-[rgba(150,175,210,0.2)] bg-[#0D1527] shadow-glow"
         onClick={(event) => event.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-modal-title"
       >
-        <div className="flex items-center justify-between border-b border-slate-800 px-6 py-5">
+        {/* Header */}
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[rgba(150,175,210,0.12)] bg-[#0D1527]/95 px-6 py-5 backdrop-blur-md">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sky-300">{project.category}</p>
-            <h3 id="project-modal-title" className="mt-2 text-2xl font-semibold text-white">{project.name}</h3>
+            <span className="font-mono text-xs font-semibold uppercase tracking-[0.25em] text-[#7CB8E8]">
+              {project.category}
+            </span>
+            <h3 id="project-modal-title" className="mt-1 text-2xl font-bold text-[#F3F5FA] font-heading">
+              {project.name}
+            </h3>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full border border-slate-700 px-3 py-1.5 text-sm text-slate-200 transition hover:border-sky-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+            className="rounded-full border border-[rgba(150,175,210,0.18)] bg-[#0A1020] px-4 py-1.5 font-mono text-xs text-[#A0A9BC] transition hover:border-[#7CB8E8]/50 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7CB8E8]"
             aria-label="Close project details"
           >
-            Close
+            Close ✕
           </button>
         </div>
 
-        <div className="space-y-8 px-6 py-6">
-          <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">Overview</p>
-            <p className="mt-3 text-slate-200">{project.description}</p>
+        {/* Modal Body */}
+        <div className="space-y-6 px-6 py-6 sm:px-8 sm:py-8">
+          {/* Overview */}
+          <div className="rounded-xl border border-[rgba(150,175,210,0.12)] bg-[#050816]/60 p-5">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#6E7A94]">Overview</p>
+            <p className="mt-2.5 text-sm sm:text-base leading-relaxed text-[#F3F5FA]">{project.description}</p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-              <h4 className="text-lg font-semibold text-white">Problem</h4>
-              <p className="mt-3 text-slate-300">{project.problem}</p>
+          {/* Problem & Solution */}
+          <div className="grid gap-5 md:grid-cols-2">
+            <div className="rounded-xl border border-[rgba(150,175,210,0.12)] bg-[#050816]/60 p-5">
+              <h4 className="font-heading text-base font-bold text-[#F3F5FA]">Problem</h4>
+              <p className="mt-2 text-sm leading-relaxed text-[#A0A9BC]">{project.problem}</p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-              <h4 className="text-lg font-semibold text-white">Solution</h4>
-              <p className="mt-3 text-slate-300">{project.solution}</p>
+            <div className="rounded-xl border border-[rgba(150,175,210,0.12)] bg-[#050816]/60 p-5">
+              <h4 className="font-heading text-base font-bold text-[#F3F5FA]">Solution</h4>
+              <p className="mt-2 text-sm leading-relaxed text-[#A0A9BC]">{project.solution}</p>
             </div>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-            <h4 className="text-lg font-semibold text-white">Architecture</h4>
-            <div className="mt-4 flex flex-wrap gap-3">
+          {/* Architecture */}
+          <div className="rounded-xl border border-[rgba(150,175,210,0.12)] bg-[#050816]/60 p-5">
+            <h4 className="font-heading text-base font-bold text-[#F3F5FA]">System Architecture</h4>
+            <div className="mt-4 flex flex-wrap gap-2.5">
               {project.architecture.map((step, index) => (
-                <div key={step} className="flex items-center gap-3 rounded-full border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200">
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-sky-500/20 text-xs font-semibold text-sky-300">
+                <div key={step} className="flex items-center gap-2.5 rounded-full border border-[rgba(150,175,210,0.15)] bg-[#0A1020] px-3.5 py-1.5 text-xs text-[#F3F5FA]">
+                  <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#7CB8E8]/15 font-mono text-[11px] font-semibold text-[#7CB8E8]">
                     {index + 1}
                   </span>
-                  {step}
+                  <span>{step}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-              <h4 className="text-lg font-semibold text-white">Technology Stack</h4>
-              <div className="mt-3 flex flex-wrap gap-2">
+          {/* Stack & Status */}
+          <div className="grid gap-5 md:grid-cols-2">
+            <div className="rounded-xl border border-[rgba(150,175,210,0.12)] bg-[#050816]/60 p-5">
+              <h4 className="font-heading text-base font-bold text-[#F3F5FA]">Technology Stack</h4>
+              <div className="mt-3 flex flex-wrap gap-1.5">
                 {project.stack.map((item) => (
-                  <span key={item} className="rounded-full border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-200">
+                  <span key={item} className="rounded-md border border-[rgba(124,184,232,0.2)] bg-[rgba(124,184,232,0.06)] px-2.5 py-1 font-mono text-xs text-[#7CB8E8]">
                     {item}
                   </span>
                 ))}
               </div>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-              <h4 className="text-lg font-semibold text-white">Status / Achievement</h4>
-              <p className="mt-3 text-slate-300">{project.status}</p>
+            <div className="rounded-xl border border-[rgba(150,175,210,0.12)] bg-[#050816]/60 p-5">
+              <h4 className="font-heading text-base font-bold text-[#F3F5FA]">Status &amp; Milestone</h4>
+              <p className="mt-2 text-sm leading-relaxed text-[#A0A9BC]">{project.status}</p>
             </div>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-              <h4 className="text-lg font-semibold text-white">Key Features</h4>
-              <ul className="mt-3 space-y-2 text-slate-300">
+          {/* Key Features & Contribution */}
+          <div className="grid gap-5 md:grid-cols-2">
+            <div className="rounded-xl border border-[rgba(150,175,210,0.12)] bg-[#050816]/60 p-5">
+              <h4 className="font-heading text-base font-bold text-[#F3F5FA]">Key Features</h4>
+              <ul className="mt-3 space-y-2 text-sm text-[#A0A9BC]">
                 {project.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-2">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-sky-300" aria-hidden="true" />
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[#7CB8E8]" aria-hidden="true" />
                     <span>{feature}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-              <h4 className="text-lg font-semibold text-white">My Contribution</h4>
-              <ul className="mt-3 space-y-2 text-slate-300">
+            <div className="rounded-xl border border-[rgba(150,175,210,0.12)] bg-[#050816]/60 p-5">
+              <h4 className="font-heading text-base font-bold text-[#F3F5FA]">Individual Contribution</h4>
+              <ul className="mt-3 space-y-2 text-sm text-[#A0A9BC]">
                 {project.myContribution.map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-violet-300" aria-hidden="true" />
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -111,17 +125,18 @@ export function ProjectModal({ project, onClose }) {
             </div>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-              <h4 className="text-lg font-semibold text-white">Development Process</h4>
-              <p className="mt-3 text-slate-300">{project.developmentProcess}</p>
+          {/* Development Process & Challenges */}
+          <div className="grid gap-5 md:grid-cols-2">
+            <div className="rounded-xl border border-[rgba(150,175,210,0.12)] bg-[#050816]/60 p-5">
+              <h4 className="font-heading text-base font-bold text-[#F3F5FA]">Development Process</h4>
+              <p className="mt-2 text-sm leading-relaxed text-[#A0A9BC]">{project.developmentProcess}</p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-              <h4 className="text-lg font-semibold text-white">Challenges</h4>
-              <ul className="mt-3 space-y-2 text-slate-300">
+            <div className="rounded-xl border border-[rgba(150,175,210,0.12)] bg-[#050816]/60 p-5">
+              <h4 className="font-heading text-base font-bold text-[#F3F5FA]">Challenges Solved</h4>
+              <ul className="mt-2 space-y-1.5 text-sm text-[#A0A9BC]">
                 {project.challenges.map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-amber-300" aria-hidden="true" />
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-amber-400" aria-hidden="true" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -129,45 +144,31 @@ export function ProjectModal({ project, onClose }) {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-            <h4 className="text-lg font-semibold text-white">Future Improvements</h4>
-            <ul className="mt-3 space-y-2 text-slate-300">
-              {project.futureImprovements.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-emerald-300" aria-hidden="true" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+          {/* Future Improvements & Results */}
+          <div className="rounded-xl border border-[rgba(150,175,210,0.12)] bg-[#050816]/60 p-5">
+            <h4 className="font-heading text-base font-bold text-[#F3F5FA]">Measurable Impact &amp; Results</h4>
+            <p className="mt-2 text-sm leading-relaxed text-[#A0A9BC]">{project.results}</p>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-            <h4 className="text-lg font-semibold text-white">Results</h4>
-            <p className="mt-3 text-slate-300">{project.results}</p>
-          </div>
-
-          <div className="flex flex-wrap gap-3 pb-2">
+          {/* Actions */}
+          <div className="flex flex-wrap items-center gap-3 pt-2">
             <a
               href={project.github}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-sky-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400"
+              className="primary-button"
             >
-              GitHub
+              View on GitHub ↗
             </a>
-            {project.demo ? (
+            {project.demo && (
               <a
                 href={project.demo}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-slate-600 px-5 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-sky-300 hover:text-sky-200 focus:outline-none focus:ring-2 focus:ring-sky-400"
+                className="secondary-button"
               >
-                Live Demo
+                Live Demo ↗
               </a>
-            ) : (
-              <span className="rounded-full border border-slate-700 bg-slate-900 px-5 py-2.5 text-sm font-semibold text-slate-400">
-                Live Demo Coming Soon
-              </span>
             )}
           </div>
         </div>
